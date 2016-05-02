@@ -8,6 +8,6 @@ node+ueditor+qiniu
 3. 视频上传
 4. 涂鸦上传后续...
 
-> 在[ueditor-node](https://github.com/netpi/ueditor/blob/master/README.md)插件上进行的修改.
+> 根据[ueditor-node](https://github.com/netpi/ueditor/blob/master/README.md)插件上进行的扩展.
 
 
