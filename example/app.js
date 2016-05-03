@@ -6,7 +6,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 // var nuq = require("node-ueditor-qiniu");
-var nuq = require("../index");
+var nuq = require("node-ueditor-qiniu");
 nuq.conf.ACCESS_KEY="xxx";
 nuq.conf.SECRET_KEY="xxxx";
 nuq.conf.urlhost="xxxx";  //七牛访问的域名
@@ -57,5 +57,3 @@ var server = app.listen(3000, function () {
 });
 
 
-
-module.exports = app;
