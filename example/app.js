@@ -6,11 +6,12 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 // var nuq = require("node-ueditor-qiniu");
-var nuq = require("node-ueditor-qiniu");
-nuq.conf.ACCESS_KEY="xxx";
-nuq.conf.SECRET_KEY="xxxx";
-nuq.conf.urlhost="xxxx";  //七牛访问的域名
-nuq.conf.bucket="xxxx";   
+var nuq = require("../index");
+nuq.conf.ACCESS_KEY='xxxx';
+nuq.conf.SECRET_KEY='xxxx';
+nuq.conf.urlhost='xxxx';
+nuq.conf.bucket='xxxx';
+nuq.conf.savelocal=true;  //保存七牛和本地 默认只保存到七牛
 
 var app = express();
  
@@ -30,8 +31,8 @@ app.use("/ueditor/ue", nuq.ueditor(path.join(__dirname, 'public'), function(req,
     // ueditor 客户发起上传请求
 
     if(req.query.action.indexOf('upload')===0){
-        console.log(req.query.action)
-        res.ue_up();
+        var dir_url = './upload/';        //本地保存路径
+        res.ue_up(dir_url);
     }
     //  客户端发起列表请求
     else if (req.query.action.indexOf('list')===0){

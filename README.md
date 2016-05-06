@@ -8,7 +8,7 @@ node+ueditor+qiniu
 3. 视频上传
 4. 涂鸦上传等待添加...
 
-> 根据[ueditor-node](https://github.com/netpi/ueditor/blob/master/README.md)插件上进行的扩展.
+> 根据[node-ueditor](https://github.com/netpi/ueditor/blob/master/README.md)插件扩展,将存储文件存放到七牛上.
 
 
 ### example
@@ -18,7 +18,7 @@ nuq.conf.ACCESS_KEY="xxx";    //七牛开发者ACCESS_KEY
 nuq.conf.SECRET_KEY="xxxx";  //七牛开发者SECRET_KEY
 nuq.conf.urlhost="xxxx";     //七牛访问的域名
 nuq.conf.bucket="xxxx";      //七牛对象储存
-
+nuq.conf.savelocal=true;     //保存七牛和本地 默认只保存到七牛
 app.use(bodyParser.urlencoded({
    extended: true
 }));
@@ -27,7 +27,8 @@ app.use("/ueditor/ue", nuq.ueditor(path.join(__dirname, 'public'), function(req,
 
     // ueditor 客户发起上传请求
     if(req.query.action.indexOf('upload')===0){
-        res.ue_up();
+        var dir_url = './upload/';        //本地保存路径
+        res.ue_up(dir_url);
     }
     //  客户端发起列表请求
     else if (req.query.action.indexOf('list')===0){
@@ -72,8 +73,8 @@ app.use("/ueditor/ue", nuq.ueditor(path.join(__dirname, 'public'), function(req,
     // ueditor 客户发起上传请求
 
     if(req.query.action.indexOf('upload')===0){
-        console.log(req.query.action)
-        res.ue_up();
+        var dir_url = './upload/';        //本地保存路径
+        res.ue_up(dir_url);
     }
     //  客户端发起获取列表请求
     else if (req.query.action.indexOf('list')===0){
@@ -99,3 +100,8 @@ var server = app.listen(3000, function () {
 });
 ```
 
+
+
+升级日志
+----------------------------------
+v0.1.0 添加文件保存到本地

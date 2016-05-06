@@ -22,9 +22,9 @@ var respond = function(static_url, callback) {
       //查找前缀的
       var type=req.query.action.replace('list','');
       res.ue_list = function() {
-        //获取文件列表
         new Qiniu(res).list(type);
       };
+
       callback(req, res, next);
     }
     else if (req.query.action.indexOf('upload')===0) {
@@ -43,13 +43,19 @@ var respond = function(static_url, callback) {
         res.ue_up = function(img_url) {
           var tmpdir = path.join(os.tmpDir(), path.basename(filename));
           var name = snowflake.nextId() + path.extname(tmpdir);
+          var dest = path.join(static_url, img_url,type, name);
           file.pipe(fs.createWriteStream(tmpdir));
           //用前缀来分类
           var prefix=type;
           //上传文件
           new Qiniu(res,tmpdir,prefix+name).uploadFile();
+          if(conf.savelocal){
+            fse.move(tmpdir, dest, function(err) {
+              if (err) throw err;
+            });
+          }
           //删除本地文件
-          fs.unlink(tmpdir);
+          //fs.unlink(tmpdir);
         };
         callback(req, res, next);
       });

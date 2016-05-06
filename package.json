@@ -1,6 +1,6 @@
 {
   "name": "node-ueditor-qiniu",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "在node-ueditor插件上扩展,将存储文件放到七牛上.",
   "main": "index.js",
   "scripts": {

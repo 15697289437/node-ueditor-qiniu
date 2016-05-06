@@ -13,3 +13,5 @@ var conf={
 module.exports=conf;
 exports.bucket="";
 exports.urlhost="";
+//保存位置
+exports.savelocal=false;
