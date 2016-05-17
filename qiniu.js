@@ -58,8 +58,12 @@ class Qiniu{
         //列举库下的全部文件
         new qiniu.rsf.listPrefix(conf.bucket,prefix,'',1000,'',(err,result)=>{
             let _list=[];
+            let _imageps="";
+            if(prefix=="image"&&conf.imageps){
+                _imageps="?"+conf.imageps;
+            }
             result.items&&result.items.forEach((e)=>{
-                _list.push({url:url.resolve(conf.urlhost, e.key)})
+                _list.push({url:url.resolve(conf.urlhost, e.key)+_imageps})
             });
             this.res.json({
                 "state": "SUCCESS",

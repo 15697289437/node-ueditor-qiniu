@@ -9,9 +9,21 @@ var bodyParser = require('body-parser');
 var nuq = require("../index");
 nuq.conf.ACCESS_KEY='xxxx';
 nuq.conf.SECRET_KEY='xxxx';
-nuq.conf.urlhost='xxxx';
 nuq.conf.bucket='xxxx';
-nuq.conf.savelocal=true;  //保存七牛和本地 默认只保存到七牛
+nuq.conf.urlhost='xxxx';
+nuq.conf.savelocal=true;  //保存七牛和本地 默认只保存到七牛:false
+//返回的图片列表会是处理后的图片
+nuq.conf.imageps="watermark/1/image/aHR0cDovL2RldmVsb3Blci5xaW5pdS5jb20vcmVzb3VyY2UvbG9nby0yLmpwZw==/dissolve/88/gravity/SouthEast/dx/10/dy/10";
+//参考文档 http://developer.qiniu.com/code/v6/api/kodo-api/index.html#image
+/*
+ 图片基本处理 (imageView2)
+ 图片高级处理 (imageMogr2)
+ 图片基本信息 (imageInfo)
+ 图片EXIF信息 (exif)
+ 图片水印处理 (watermark)
+ 图片主色调 (imageAve)
+*/
+
 
 var app = express();
  

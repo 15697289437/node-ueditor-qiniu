@@ -18,7 +18,9 @@ nuq.conf.ACCESS_KEY="xxx";    //七牛开发者ACCESS_KEY
 nuq.conf.SECRET_KEY="xxxx";  //七牛开发者SECRET_KEY
 nuq.conf.urlhost="xxxx";     //七牛访问的域名
 nuq.conf.bucket="xxxx";      //七牛对象储存
-nuq.conf.savelocal=true;     //保存七牛和本地 默认只保存到七牛
+nuq.conf.savelocal=true;     //保存七牛和本地 默认只保存到七牛:false
+nuq.conf.imageps="watermark/1/image/aHR0cDovL2RldmVsb3Blci5xaW5pdS5jb20vcmVzb3VyY2UvbG9nby0yLmpwZw==/dissolve/88/gravity/SouthEast/dx/10/dy/10";
+
 app.use(bodyParser.urlencoded({
    extended: true
 }));
@@ -54,6 +56,8 @@ nuq.conf.ACCESS_KEY="xxx";
 nuq.conf.SECRET_KEY="xxxx";
 nuq.conf.urlhost="xxxx";  //七牛访问的域名
 nuq.conf.bucket="xxxx";   
+nuq.conf.savelocal=true;     //保存七牛和本地 默认只保存到七牛:false
+nuq.conf.imageps="watermark/1/image/aHR0cDovL2RldmVsb3Blci5xaW5pdS5jb20vcmVzb3VyY2UvbG9nby0yLmpwZw==/dissolve/88/gravity/SouthEast/dx/10/dy/10";
 
 var app = express();
  
@@ -104,4 +108,11 @@ var server = app.listen(3000, function () {
 
 升级日志
 ----------------------------------
+v0.2.0 添加图片处理,[详情参照](http://developer.qiniu.com/code/v6/api/kodo-api/index.html#image)
+```javascript
+    conf.imageps:string  //图片处理 不处理传空
+```
 v0.1.0 添加文件保存到本地
+```javascript
+    conf.savelocal:boolean  //是否保存到本地 默认保存到七牛(false)
+```

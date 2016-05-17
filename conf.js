@@ -12,6 +12,9 @@ var conf={
 };
 module.exports=conf;
 exports.bucket="";
+//访问链接
 exports.urlhost="";
 //保存位置
 exports.savelocal=false;
+//图片处理
+exports.imageps="";
