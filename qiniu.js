@@ -34,9 +34,13 @@ class Qiniu{
         var extra = new qiniu.io.PutExtra();
         qiniu.io.putFile(this.uptoken(), this.file, this.localFile, extra, (err, ret)=> {
             if(!err) {
+                let _imageps="";
+                if(ret.key.indexOf("image")==0&&conf.imageps){
+                    _imageps="?"+conf.imageps;
+                }
                 // 上传成功， 处理返回值>ueditor
                 this.res.json({
-                    'url': url.resolve(conf.urlhost, ret.key),
+                    'url': url.resolve(conf.urlhost, ret.key)+_imageps,
                     'title': "",
                     'original': ret.key,
                     'state': 'SUCCESS'

@@ -7,10 +7,10 @@ var bodyParser = require('body-parser');
 
 // var nuq = require("node-ueditor-qiniu");
 var nuq = require("../index");
-nuq.conf.ACCESS_KEY='xxxx';
-nuq.conf.SECRET_KEY='xxxx';
-nuq.conf.bucket='xxxx';
-nuq.conf.urlhost='xxxx';
+nuq.conf.ACCESS_KEY='XhjrTWRsK2NvOCVVO-MhKmRfzZkyvNkIqFwcSwuh';
+nuq.conf.SECRET_KEY='pYYQBtf1bcC5C-ltckCmfKpSnlCZqBG7lEg4HwBZ';
+nuq.conf.bucket='docdev';
+nuq.conf.urlhost='http://xxx.xxx.com';
 nuq.conf.savelocal=true;  //保存七牛和本地 默认只保存到七牛:false
 //返回的图片列表会是处理后的图片
 nuq.conf.imageps="watermark/1/image/aHR0cDovL2RldmVsb3Blci5xaW5pdS5jb20vcmVzb3VyY2UvbG9nby0yLmpwZw==/dissolve/88/gravity/SouthEast/dx/10/dy/10";
@@ -52,7 +52,6 @@ app.use("/ueditor/ue", nuq.ueditor(path.join(__dirname, 'public'), function(req,
     }
     // 客户端发起其它请求
     else {
-
         res.setHeader('Content-Type', 'application/json');
         // 这里填写 ueditor.config.json 这个文件的路径
         res.redirect('/ueditor/config.json')

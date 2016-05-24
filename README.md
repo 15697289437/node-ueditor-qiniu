@@ -6,7 +6,7 @@ node+ueditor+qiniu
 1. 图片上传
 2. 文件上传
 3. 视频上传
-4. 涂鸦上传等待添加...
+4. 涂鸦上传只能保存到七牛
 
 > 根据[node-ueditor](https://github.com/netpi/ueditor/blob/master/README.md)插件扩展,将存储文件存放到七牛上.
 
@@ -108,6 +108,9 @@ var server = app.listen(3000, function () {
 
 升级日志
 ----------------------------------
+v0.3.0 涂鸦上传
+>支持涂鸦上传只支持七牛
+
 v0.2.0 添加图片处理,[详情参照](http://developer.qiniu.com/code/v6/api/kodo-api/index.html#image)
 ```javascript
     conf.imageps:string  //图片处理 不处理传空

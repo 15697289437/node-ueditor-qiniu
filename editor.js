@@ -29,6 +29,19 @@ var respond = function(static_url, callback) {
     }
     else if (req.query.action.indexOf('upload')===0) {
       var type=req.query.action.replace('upload','');
+      console.log(req.body.upfile)
+      if(type=="scrawl"){
+        var imgData=req.body.upfile;
+        var base64Data = imgData;
+        var dataBuffer = new Buffer(base64Data, 'base64');
+        var filePath=Date.now()+".png"
+        fs.writeFile(filePath, dataBuffer, function(err) {
+          if(!err){
+            new Qiniu(res,filePath,"image"+Date.now()+".png").uploadFile();
+            fs.unlink(filePath)
+          }
+        });
+      }
       var busboy = new Busboy({
         headers: req.headers
       });
@@ -41,6 +54,7 @@ var respond = function(static_url, callback) {
         req.ueditor.encoding = encoding;
         req.ueditor.mimetype = mimetype;
         res.ue_up = function(img_url) {
+          //scrawl
           var tmpdir = path.join(os.tmpDir(), path.basename(filename));
           var name = snowflake.nextId() + path.extname(tmpdir);
           var dest = path.join(static_url, img_url,type, name);
